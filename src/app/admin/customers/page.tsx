@@ -1,15 +1,8 @@
 import { SiteSubHeader } from "@/components/site-sub-header";
 import { Button } from "@/components/ui/button";
-import { Bell, Plus, Search } from "lucide-react";
-import { NavUser } from "@/components/nav-user";
+import { Plus, Search } from "lucide-react";
 
-// Sample user data
-const userData = {
-  name: "John Doe",
-  email: "john.doe@example.com",
-  avatar: "/dummy-pfp.jpg",
-  role: "Administrator",
-};
+
 
 export default function CustomersPage() {
   // Define breadcrumbs for this page

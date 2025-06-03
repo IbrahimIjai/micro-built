@@ -2,7 +2,6 @@
 
 import {
   IconCreditCard,
-  IconDotsVertical,
   IconLogout,
   IconNotification,
   IconUserCircle,
@@ -22,7 +21,6 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar,
 } from "@/components/ui/sidebar";
 import { Button } from "./ui/button";
 import { ChevronDown, LogOut } from "lucide-react";
@@ -37,7 +35,6 @@ export function NavUser({
     role: string;
   };
 }) {
-  const { isMobile } = useSidebar();
 
   return (
     <SidebarMenu>
@@ -65,7 +62,7 @@ export function NavUser({
           </DropdownMenuTrigger>
           <DropdownMenuContent
             className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
-            side={isMobile ? "bottom" : "bottom"}
+            side="bottom" 
             align="end"
             sideOffset={4}
           >
@@ -111,7 +108,6 @@ export function NavUser({
 }
 
 export function NavUserLogout() {
-  const { isMobile } = useSidebar();
 
   return (
     <SidebarMenu>

@@ -5,7 +5,6 @@ import {
   CartesianGrid,
   Line,
   LineChart,
-  ResponsiveContainer,
   XAxis,
   YAxis,
 } from "recharts";
@@ -13,7 +12,6 @@ import {
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -61,21 +59,6 @@ export default function LoanDisbursementChart() {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(value);
-  };
-
-  const getTimeRangeTitle = () => {
-    switch (timePeriod) {
-      case "monthly":
-        return "2024";
-      case "bimonthly":
-        return "2024";
-      case "weekly":
-        return "Q1 2024";
-      case "biweekly":
-        return "Q1 2024";
-      default:
-        return "2024";
-    }
   };
 
   return (
