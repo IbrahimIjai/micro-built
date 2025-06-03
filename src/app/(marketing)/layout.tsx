@@ -1,5 +1,4 @@
-import { MainNav } from "@/components/site-header";
-
+import { MainNav } from "@/components/flow-header";
 
 export default function HomeLayout({
   children,
@@ -8,7 +7,7 @@ export default function HomeLayout({
 }>) {
   return (
     <>
-      <MainNav /> 
+      <MainNav />
       {children}
     </>
   );
