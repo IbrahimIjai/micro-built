@@ -1,8 +1,8 @@
 import { SiteSubHeader } from "@/components/site-sub-header";
 import { Button } from "@/components/ui/button";
+import CustomersTableAdminCustomer from "@/ui/admin-customer/customer-table";
+import CustomerSectionCards from "@/ui/admin-customer/section-card";
 import { Plus, Search } from "lucide-react";
-
-
 
 export default function CustomersPage() {
   // Define breadcrumbs for this page
@@ -16,9 +16,9 @@ export default function CustomersPage() {
     <>
       <div className="relative">
         <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-        <input 
-          type="search" 
-          placeholder="Search customers..." 
+        <input
+          type="search"
+          placeholder="Search customers..."
           className="h-9 w-[200px] rounded-md border border-input bg-background pl-8 pr-3 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         />
       </div>
@@ -29,20 +29,10 @@ export default function CustomersPage() {
   );
 
   return (
-    <div className="flex flex-col h-full">
-      <SiteSubHeader 
-        breadcrumbs={breadcrumbs}
-        rightContent={rightContent}
-      />
-      
-      <div className="flex-1 p-6">
-        <h1 className="text-2xl font-bold tracking-tight mb-6">Customers</h1>
-        
-        {/* Your customers page content goes here */}
-        <div className="rounded-lg border bg-card text-card-foreground shadow-sm p-6">
-          <p>Customer management interface will be displayed here.</p>
-        </div>
-      </div>
+    <div className="flex flex-col h-full px-4 @container/main py-4 md:py-6 gap-4">
+      <SiteSubHeader breadcrumbs={breadcrumbs} rightContent={rightContent} />
+      <CustomerSectionCards />
+      <CustomersTableAdminCustomer />
     </div>
   );
 }
