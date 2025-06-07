@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 
 export function SectionCardsAdminDashboad() {
   return (
-    <div className="grid grid-cols-1 gap-2 px-4 *:data-[slot=card]:shadow-xs lg:px-6 @xl/main:grid-cols-3 @5xl/main:grid-cols-5">
+    <div className="grid grid-cols-1 gap-2 justify-between *:data-[slot=card]:shadow-xs lg:px-6 @xl/main:grid-cols-3 @5xl/main:grid-cols-5">
       <Card className="bg-background">
         <CardHeader>
           <CardTitle className=" font-semibold tabular-nums @[250px]/card:text-3xl">

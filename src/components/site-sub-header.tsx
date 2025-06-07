@@ -89,9 +89,8 @@ export function SiteSubHeader({
   className = "",
 }: PageHeaderProps) {
   return (
-    <header className={`flex bg-background py-4 shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear ${className}`}>
+    <header className={`flex bg-background py-4 items-center gap-2 border-b transition-[width,height] ease-linear ${className}`}>
       <div className="flex w-full items-center gap-1 px-4 lg:gap-2 lg:px-6">
-        {showSidebarTrigger && <SidebarTrigger className="-ml-1" />}
         
         {/* Left side content - Breadcrumbs */}
         <div className="flex items-center ml-2">
