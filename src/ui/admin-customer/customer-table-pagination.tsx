@@ -58,7 +58,7 @@ export function CustomerTablePagination<TData>({
   const visiblePages = getVisiblePages();
 
   return (
-    <div className="flex items-center justify-center gap-5 bg-[#f6f1f1] rounded-full px-2 py-1  mx-auto">
+    <div className="flex items-center justify-center gap-5 bg-[#f6f1f1] rounded-full px-2 py-1 w-fit  mx-auto">
       {/* Previous Button */}
       <div className="flex items-center gap-1">
         <div
@@ -83,11 +83,11 @@ export function CustomerTablePagination<TData>({
       </div>
 
       {/* Page Numbers */}
-      <div className="flex items-center mx-1 gap-1">
+      <div className="flex items-center mx-1 gap-2">
         {visiblePages.map((page, index) => {
           if (page === -1) {
             return (
-              <span key={`ellipsis-${index}`} className="px-2 text-gray-400">
+              <span key={`ellipsis-${index}`} className="px-2 text-muted-foreground">
                 ...
               </span>
             );
@@ -101,7 +101,7 @@ export function CustomerTablePagination<TData>({
               onClick={() => table.setPageIndex(page - 1)}
               className={`flex items-center justify-center cursor-pointer text-xs ${
                 isCurrentPage
-                  ? "text-primary font-medium shadow-sm "
+                  ? "text-primary font-semibold "
                   : "text-muted-foreground"
               }`}
             >
@@ -112,19 +112,27 @@ export function CustomerTablePagination<TData>({
       </div>
 
       {/* Next Button */}
-      <Button
-        variant="ghost"
-        size="sm"
-        onClick={() => table.nextPage()}
-        disabled={!table.getCanNextPage()}
-        className={`h-8 w-8 p-0 rounded-full ${
-          !table.getCanNextPage()
-            ? "text-gray-300 cursor-not-allowed"
-            : "text-gray-500 hover:bg-white hover:text-gray-700"
-        }`}
-      >
-        <ChevronRight className="w-4 h-4" />
-      </Button>
+      <div className="flex items-center gap-1">
+        <span
+          className={`text-xs ${
+            !table.getCanPreviousPage()
+              ? "text-muted-foreground cursor-not-allowed"
+              : "text-primary"
+          }`}
+        >
+          Next
+        </span>
+        <div
+          onClick={() => table.nextPage()}
+          className={`rounded-full p-1 text-white ${
+            !table.getCanNextPage()
+              ? "bg-[#CCCCCC] cursor-not-allowed"
+              : "bg-[#046307]"
+          }`}
+        >
+          <ChevronRight className="w-3 h-3" />
+        </div>
+      </div>
     </div>
   );
 }

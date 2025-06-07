@@ -1,47 +1,44 @@
-"use client";
+import { SiteSubHeader } from "@/components/site-sub-header";
+import { ActiveLoans } from "@/ui/admin-customer-profile/active-lons";
+import { DownloadReportDialogCustomerProfile } from "@/ui/admin-customer-profile/download-report";
+import { activeLoans, customerProfile, repaymentHistory  } from "@/ui/admin-customer-profile/dummy-data";
+import {
+  CustomerProfileCard,
+  LoanSummary,
+} from "@/ui/admin-customer-profile/profile-detail-cards";
+import { RepaymentHistoryTable } from "@/ui/admin-customer-profile/table-repayment-history";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
-
-interface CustomerDetailPageProps {
+export default async function CustomersPage({
+  params,
+}: {
   params: {
     customerId: string;
   };
-}
+}) {
+  const { customerId } =  await params;
+  // Define breadcrumbs for this page
+  const breadcrumbs = [
+    { label: "Dashboard", href: "/admin" },
+    { label: "Customers", href: "/admin/customers" },
+    {
+      label: "Customers Profile",
+      isCurrentPage: true,
+      href: `/admin/customers/${customerId}`,
+    },
+  ];
 
-export default function CustomerDetailPage({
-  params,
-}: CustomerDetailPageProps) {
   return (
-    <div className="p-6 space-y-6 bg-gray-50 min-h-screen">
-      <div className="flex items-center gap-4">
-        <Button variant="ghost" size="sm" onClick={() => window.history.back()}>
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Customers
-        </Button>
-        <h1 className="text-2xl font-semibold text-gray-900">
-          Customer Details - {params.customerId}
-        </h1>
+    <div className="flex flex-col h-full px-4 @container/main py-4 md:py-6 gap-4">
+      <SiteSubHeader
+        breadcrumbs={breadcrumbs}
+        rightContent={<DownloadReportDialogCustomerProfile />}
+      />
+      <div>
+        <CustomerProfileCard customer={customerProfile} />
+        <LoanSummary customer={customerProfile} />
+        <ActiveLoans loans={activeLoans} />
+        <RepaymentHistoryTable history={repaymentHistory} customerName={customerProfile.name} />
       </div>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Customer Information</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-gray-600">
-            Customer ID:{" "}
-            <span className="font-medium text-green-700">
-              {params.customerId}
-            </span>
-          </p>
-          <p className="text-sm text-gray-500 mt-2">
-            This is a placeholder page for customer details. You can implement
-            the full customer profile here.
-          </p>
-        </CardContent>
-      </Card>
     </div>
   );
 }
