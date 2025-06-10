@@ -28,6 +28,7 @@ import {
 } from "@/components/ui/table";
 import { Search, Filter, Download } from "lucide-react";
 import type { RepaymentHistory } from "./dummy-data";
+import { TablePagination } from "../tables/pagination";
 
 interface RepaymentHistoryProps {
   history: RepaymentHistory[];
@@ -288,69 +289,10 @@ export function RepaymentHistoryTable({
           </Table>
         </div>
 
-        {/* Pagination and Selection Info */}
-        <div className="flex items-center justify-between space-x-2 py-4 px-4">
-          <div className="flex-1 text-sm text-muted-foreground">
-            {table.getFilteredSelectedRowModel().rows.length} of{" "}
-            {table.getFilteredRowModel().rows.length} row(s) selected.
-          </div>
-          <div className="flex items-center space-x-2">
-            {/* Previous Button */}
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => table.previousPage()}
-              disabled={!table.getCanPreviousPage()}
-              className={`${
-                !table.getCanPreviousPage()
-                  ? "text-gray-400 cursor-not-allowed"
-                  : "text-gray-600 hover:bg-gray-100"
-              }`}
-            >
-              Prev
-            </Button>
-
-            {/* Page Numbers */}
-            <div className="flex items-center space-x-1">
-              {table.getPageOptions().map((page, index) => {
-                const pageNumber = page + 1;
-                const isCurrentPage =
-                  table.getState().pagination.pageIndex === page;
-
-                return (
-                  <Button
-                    key={page}
-                    variant={isCurrentPage ? "default" : "ghost"}
-                    size="sm"
-                    onClick={() => table.setPageIndex(page)}
-                    className={
-                      isCurrentPage
-                        ? "bg-gray-900 text-white hover:bg-gray-800 min-w-[32px]"
-                        : "text-gray-600 hover:bg-gray-100 min-w-[32px]"
-                    }
-                  >
-                    {pageNumber}
-                  </Button>
-                );
-              })}
-            </div>
-
-            {/* Next Button */}
-            <Button
-              variant={table.getCanNextPage() ? "default" : "ghost"}
-              size="sm"
-              onClick={() => table.nextPage()}
-              disabled={!table.getCanNextPage()}
-              className={
-                table.getCanNextPage()
-                  ? "bg-green-700 text-white hover:bg-green-800"
-                  : "text-gray-400 cursor-not-allowed"
-              }
-            >
-              Next
-            </Button>
-          </div>
-        </div>
+       {/* Pagination */}
+             <div className="py-4 px-4">
+               <TablePagination table={table} />
+             </div>
       </CardContent>
     </Card>
   );
