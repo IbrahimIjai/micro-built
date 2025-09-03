@@ -27,9 +27,9 @@ export const disburse = (id: string) =>
 
 export const approve = (id: string) =>
   mutationOptions({
-    mutationKey: [base, "set-terms", id],
+    mutationKey: [base, "approve", id],
     mutationFn: async (data: LoanTerms) => {
-      const res = await api.patch<ApiRes<null>>(`${base}${id}/set-terms`, data);
+      const res = await api.patch<ApiRes<null>>(`${base}${id}/approve`, data);
       return res.data.message;
     },
     onSuccess: (data) => invalidateQueries(id).then(() => toast.success(data)),

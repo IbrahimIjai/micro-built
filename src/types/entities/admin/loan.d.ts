@@ -19,7 +19,7 @@ type CashLoan = {
   status: LoanStatus;
   category: LoanCategory;
   disbursementDate: Date | null;
-  loanTenure: number;
+  tenure: number;
   borrowerId: string;
   createdAt: Date;
   updatedAt: Date;
