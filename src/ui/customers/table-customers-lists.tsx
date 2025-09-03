@@ -85,7 +85,6 @@ export default function CustomersListTable() {
 		onSortingChange: setSorting,
 		onColumnFiltersChange: setColumnFilters,
 		getCoreRowModel: getCoreRowModel(),
-		// getPaginationRowModel: getPaginationRowModel(),
 
 		manualPagination: true,
 
@@ -94,7 +93,8 @@ export default function CustomersListTable() {
 		onColumnVisibilityChange: setColumnVisibility,
 		onRowSelectionChange: setRowSelection,
 
-    onPaginationChange: setPagination,
+        onPaginationChange: setPagination,
+		
 		state: {
 			sorting,
 			columnFilters,

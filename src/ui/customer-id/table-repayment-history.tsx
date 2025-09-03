@@ -9,6 +9,7 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
+  PaginationState,
   type SortingState,
   useReactTable,
   type VisibilityState,
@@ -30,6 +31,7 @@ import { cn, formatCurrency } from "@/lib/utils";
 import { formatDate } from "date-fns";
 import { customerRepayments } from "@/lib/queries/admin/customer";
 import { getUserStatusColor, getUserStatusText } from "@/config/status";
+import { TableEmptyState } from "../tables/table-empty-state";
 
 const columns: ColumnDef<RepaymentsHistoryDto>[] = [
   {
@@ -94,11 +96,12 @@ export function RepaymentHistoryTable({
 
   const { data } = useQuery(
     customerRepayments(id, {
-      page: 1,
-      limit: 5,
+      page: pagination.pageIndex + 1,
+      limit: pagination.pageSize,
       // need repayment status
     })
   );
+
   const table = useReactTable({
     data: data?.data || [],
     columns,
