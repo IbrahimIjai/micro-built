@@ -1,7 +1,7 @@
 "use client";
 
 import { Card, CardTitle, CardHeader, CardContent } from "@/components/ui/card";
-import { Mail, Phone } from "lucide-react";
+import { Mail, Phone, BadgeInfo } from "lucide-react";
 import { Icons } from "@/components/icons";
 import { Separator } from "@/components/ui/separator";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -16,6 +16,11 @@ import { Button } from "@/components/ui/button";
 import AdminMessageUserModal from "../modals/customer-actions/message-customer";
 import LiquidationRequestModal from "../modals/customer-actions/liquidation-request";
 import RepaymentRateIndicator from "@/components/repayment-rate";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export function CustomerProfileCard({
   name,
@@ -171,20 +176,33 @@ export function LoanSummary({ id, name }: { id: string; name: string }) {
             <div className="w-2 h-2 bg-primary rounded-full secondary absolute top-3 right-3"></div>
 
             <p className={`text-2xl font-semibold text-primary`}>
-              {loanSummary?.interestPaid ?? 0}
+              {formatCurrency(loanSummary?.interestPaid ?? 0)}
             </p>
-            <p className="text-sm text-muted-foreground">
-              Interest Paid (and penalties)
-            </p>
+            <div className="flex items-center gap-0.5">
+              <p className="text-sm text-muted-foreground">Total Interest</p>
+              <Tooltip>
+                <TooltipTrigger>
+                  <BadgeInfo className="w-4 h-4 ml-1 text-muted-foreground cursor-pointer" />
+                </TooltipTrigger>
+                <TooltipContent
+                  side="top"
+                  className="bg-gray-700 text-white p-2 rounded"
+                >
+                  <p>
+                    This includes paid and unpaid interests, includes penalties
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            </div>
           </div>
 
           <div className="relative space-y-2 rounded-lg  border-l-2 border-t-2 border-secondary  p-4">
             <div className="w-2 h-2 bg-primary rounded-full secondary absolute top-3 right-3"></div>
 
             <p className={`text-2xl font-semibold text-primary`}>
-              {loanSummary?.currentOverdue ?? 0}
+              {formatCurrency(loanSummary?.currentOverdue ?? 0)}
             </p>
-            <p className="text-sm text-muted-foreground">Overdue Balance</p>
+            <p className="text-sm text-muted-foreground">Upcoming Repayment</p>
           </div>
         </div>
         <div className="w-full mt-4">
