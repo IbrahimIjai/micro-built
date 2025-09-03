@@ -3,8 +3,8 @@ type CommodityLoan = {
   name: string;
   createdAt: Date;
   inReview: boolean;
-  publicDetails?: string;
-  privateDetails?: string;
+  publicDetails: string | null;
+  privateDetails: string | null;
   loanId: string | null;
   userId: string;
 };
@@ -18,13 +18,12 @@ type CashLoan = {
   interestRate: number;
   status: LoanStatus;
   category: LoanCategory;
-  disbursementDate?: Date;
+  disbursementDate: Date | null;
   loanTenure: number;
-  extension: number;
   borrowerId: string;
   createdAt: Date;
   updatedAt: Date;
-  asset?: CommodityLoan;
+  asset: CommodityLoan | null;
 };
 
 type CashLoanItemDto = {

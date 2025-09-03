@@ -38,13 +38,13 @@ type LiquidationForm = z.infer<typeof liquidationSchema>;
 type Props = {
   userId: string;
   name: string;
-  totalBorrowed: number;
+  amountOwed: number;
 };
 
 export default function LiquidationRequestModal({
   userId,
   name,
-  totalBorrowed,
+  amountOwed,
 }: Props) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -104,7 +104,7 @@ export default function LiquidationRequestModal({
                     <span>Total Outstanding</span>
                   </div>
                   <p className="text-2xl font-bold text-slate-900">
-                    {formatCurrency(totalBorrowed)}
+                    {formatCurrency(amountOwed)}
                   </p>
                 </div>
 
